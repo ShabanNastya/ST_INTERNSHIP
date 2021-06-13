@@ -6,71 +6,42 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Xylophone',
-      home: Xylophone(),
-    );
-  }
-}
-
-class Xylophone extends StatefulWidget {
-  @override
-  _XylophoneState createState() => _XylophoneState();
-}
-
-class _XylophoneState extends State<Xylophone> {
   void playSound(int soundNumber) {
     final player = AudioCache();
     player.play('note$soundNumber.wav');
   }
 
+  Expanded buildKey(int soundNumber, Color colors) {
+    return Expanded(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: colors,
+        ),
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        child: Padding(
+          padding: EdgeInsets.all(5.0),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-
-        child: SafeArea(
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
           child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  color: Colors.red,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.orange,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.yellow,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.green,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.cyan,
-               ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.indigo,
-               ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.purple,
-                ),
-              ),
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              buildKey(1, Colors.red),
+              buildKey(2, Colors.orange),
+              buildKey(3, Colors.yellow),
+              buildKey(4, Colors.green),
+              buildKey(5, Colors.cyan),
+              buildKey(6, Colors.indigo),
+              buildKey(7, Colors.purple),
             ],
           ),
         ),
