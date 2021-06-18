@@ -41,7 +41,6 @@ class _InputPageState extends State<InputPage> {
   double height = 120;
   double weight = 60;
   double age = 18;
-  String status = "Normal";
   double result = 0;
 
   @override
@@ -51,140 +50,144 @@ class _InputPageState extends State<InputPage> {
         title: Text(widget.title),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedGender = Gender.male;
-                  });
-                },
-                child: Container(
-                  margin: EdgeInsets.all(10.0),
-                  padding: EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                      color: selectedGender == Gender.male
-                          ? activeColor
-                          : inactiveColor),
-                  child: Column(
-                    children: <Widget>[
-                      Icon(
-                        FontAwesomeIcons.mars,
-                        size: 50.0,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Text(
-                        'MALE',
-                        style: TextStyle(
-                          color: Colors.white30,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(padding: EdgeInsets.all(50.0)),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedGender = Gender.female;
-                  });
-                },
-                child: Container(
-                  margin: EdgeInsets.all(10.0),
-                  padding: EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                      color: selectedGender == Gender.female
-                          ? activeColor
-                          : inactiveColor),
-                  child: Column(
-                    children: <Widget>[
-                      Icon(
-                        FontAwesomeIcons.venus,
-                        size: 50.0,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Text(
-                        'FEMALE',
-                        style: TextStyle(
-                          color: Colors.white30,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Container(
-            child: Column(
+          Expanded(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  'HEIGHT',
-                  style: TextStyle(
-                    color: Colors.white30,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(30.0),
+                    decoration: BoxDecoration(
+                        color: selectedGender == Gender.male
+                            ? activeColor
+                            : inactiveColor),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          FontAwesomeIcons.mars,
+                          size: 50.0,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          'MALE',
+                          style: TextStyle(
+                            color: Colors.white30,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-                  children: <Widget>[
-                    Text(
-                      height.toString(),
-                      style: TextStyle(
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                Padding(padding: EdgeInsets.all(20.0)),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(30.0),
+                    decoration: BoxDecoration(
+                        color: selectedGender == Gender.female
+                            ? activeColor
+                            : inactiveColor),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          FontAwesomeIcons.venus,
+                          size: 50.0,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          'FEMALE',
+                          style: TextStyle(
+                            color: Colors.white30,
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'cm',
-                      style: TextStyle(
-                        color: Colors.white30,
-                      ),
-                    ),
-                  ],
-                ),
-                SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: Colors.white,
-                      inactiveTrackColor: Colors.white30,
-                      overlayColor: Colors.pinkAccent,
-                      thumbColor: Colors.pink,
-                    ),
-                    child: Slider(
-                      value: height.toDouble(),
-                      min: 50,
-                      max: 200,
-                      onChanged: (double v) {
-                        setState(() {
-                          height = v.round() as double;
-                        });
-                      },
-                    ))
+                  ),
+                )
               ],
             ),
           ),
-          Row(
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT',
+                    style: TextStyle(
+                      color: Colors.white30,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: TextStyle(
+                          fontSize: 50.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'cm',
+                        style: TextStyle(
+                          color: Colors.white30,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: Colors.white,
+                        inactiveTrackColor: Colors.white30,
+                        overlayColor: Colors.pinkAccent,
+                        thumbColor: Colors.pink,
+                      ),
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 50,
+                        max: 200,
+                        onChanged: (double v) {
+                          setState(() {
+                            height = v.round() as double;
+                          });
+                        },
+                      ))
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+              child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.all(10.0),
-                padding: EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -195,9 +198,6 @@ class _InputPageState extends State<InputPage> {
                         color: Colors.white30,
                       ),
                     ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
                     Text(
                       weight.toString(),
                       style: TextStyle(
@@ -207,8 +207,6 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         RawMaterialButton(
                           child: Icon(Icons.remove, size: 18),
@@ -240,8 +238,6 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10.0),
-                padding: EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -264,8 +260,6 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         RawMaterialButton(
                           child: Icon(Icons.remove, size: 18),
@@ -297,18 +291,19 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
             ],
-          )
+          )),
+          SizedBox(height: 50.0)
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          CalculateResult calcResult = CalculateResult(
-              height: height, weight: weight, result: result, status: status);
+          CalculateResult calcResult =
+              CalculateResult(height: height, weight: weight, result: result);
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => ResultPage(calcResult.calculateResult(),
-                      calcResult.status, calcResult.getDescription())));
+                      calcResult.getStatus(), calcResult.getDescription())));
         },
         label: Text('CALCULATE'),
         backgroundColor: Colors.pinkAccent,
