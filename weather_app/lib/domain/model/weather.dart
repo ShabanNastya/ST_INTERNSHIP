@@ -1,5 +1,6 @@
 class WeatherList {
   List<WeatherModel> items;
+
   WeatherList({this.items});
 }
 

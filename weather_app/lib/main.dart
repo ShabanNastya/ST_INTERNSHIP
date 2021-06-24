@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/presentation/pages/home/home_page.dart';
-import 'package:weather_app/presentation/pages/authorization/authorization_page.dart';
 
 void main() {
   runApp(MyApp());
