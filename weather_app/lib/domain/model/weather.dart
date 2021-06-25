@@ -4,7 +4,6 @@ class WeatherList {
   WeatherList({this.items});
 }
 
-//точнить насчёт полей
 class WeatherModel {
   int id;
   String city;

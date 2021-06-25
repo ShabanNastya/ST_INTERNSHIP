@@ -10,16 +10,18 @@ class WeatherPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Weather Page'),
         actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.settings), onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return SettingsPage();
-                },
-              ),
-            );
-          },
+          new IconButton(
+            icon: new Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SettingsPage();
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -31,11 +33,8 @@ class WeatherPage extends StatelessWidget {
 }
 
 class WeatherApp extends StatefulWidget {
-
   @override
-  State<StatefulWidget> createState(){
-    return _WeatherAppState();
-  }
+  _WeatherAppState createState() => _WeatherAppState();
 }
 
 class _WeatherAppState extends State<WeatherApp> {
@@ -45,20 +44,9 @@ class _WeatherAppState extends State<WeatherApp> {
   var humidity;
   var windSpeed;
 
-  Future getWeather() async{
+  Future getWeather() async {
     String city = "London";
-    String apiKey = "9adc06683c75b8973ca4579eb2525cd4";
-    var url = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric";
-    final response = await http.get(Uri.parse(url));
-    //http.Response response = await http.get("https://api.openweathermap.org/data/2.5/weather?q=Minsk&appid=9adc06683c75b8973ca4579eb2525cd4");
-    var results = jsonDecode(response.body);
-    setState(() {
-      this.temp = results['main']['temp'];
-      this.description = results['weather'][0]['description'];
-      this.currently = results['weather'][0]['main'];
-      this.humidity = results['main']['humidity'];
-      this.windSpeed = results['wind']['speed'];
-    });
+
   }
 
   @override
@@ -68,52 +56,53 @@ class _WeatherAppState extends State<WeatherApp> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height /2,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text('Currently',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+      children: <Widget>[
+        Container(
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.amber,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  'Currently',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text(
-                    temp !=null ? temp.toString() : "Loading",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      currently !=null ? currently.toString() : "Loading",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-
-            Expanded(child: Padding(
+              Text(
+                temp != null ? temp.toString() : "Loading...",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: Text(
+                  currently != null ? currently.toString() : "Loading...",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+            child: Padding(
               padding: EdgeInsets.all(20.0),
               child: ListView(
                 children: <Widget>[
@@ -126,8 +115,8 @@ class _WeatherAppState extends State<WeatherApp> {
                     trailing: Text('Weather'),
                   ),
                   ListTile(
-                    title: Text('Tempera'),
-                    trailing: Text('12.0'),
+                   title: Text('Humidity'),
+                   trailing: Text('12.0'),
                   ),
                   ListTile(
                     title: Text('Wind'),
@@ -135,9 +124,9 @@ class _WeatherAppState extends State<WeatherApp> {
                   )
                 ],
               ),
-            ))
-          ],
+            )
         )
-    );
+      ],
+    ));
   }
 }

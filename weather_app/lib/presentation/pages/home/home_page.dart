@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return AuthorizationPage();
+                          return AuthPage();
                         },
                       ),
                     );

@@ -170,12 +170,12 @@ class _InputPageState extends State<InputPage> {
                         thumbColor: Colors.pink,
                       ),
                       child: Slider(
-                        value: height.toDouble(),
+                        value: height,
                         min: 50,
                         max: 200,
                         onChanged: (double v) {
                           setState(() {
-                            height = v.round() as double;
+                            height = v.round().toDouble();
                           });
                         },
                       ))
