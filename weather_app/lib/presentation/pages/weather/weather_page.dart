@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/presentation/pages/settings/settings_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -44,9 +45,21 @@ class _WeatherAppState extends State<WeatherApp> {
   var humidity;
   var windSpeed;
 
+
   Future getWeather() async {
     String city = "London";
-
+    String apiKey = "YOURAPI";
+    var url =
+        "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric";
+    final response = await http.get(Uri.parse(url));
+    var results = jsonDecode(response.body);
+    setState(() {
+      this.temp = results['main']['temp'];
+      this.description = results['weather'][0]['description'];
+      this.currently = results['weather'][0]['main'];
+      this.humidity = results['main']['humidity'];
+      this.windSpeed = results['wind']['speed'];
+    });
   }
 
   @override
