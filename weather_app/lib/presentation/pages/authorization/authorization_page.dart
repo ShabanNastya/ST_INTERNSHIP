@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthPage extends StatefulWidget {
   @override
@@ -27,7 +28,14 @@ class _AuthPageState extends State<AuthPage> {
         hintText: "Enter e-mail..",
       ),
       validator: (String value) {
-        if (!value.contains('@')) {
+        RegExp regExp = new RegExp(
+          r"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$",
+          caseSensitive: false,
+          multiLine: false,
+        );
+        if (!regExp.hasMatch(value)) {
+          print(
+              "allMatches : " + regExp.hasMatch("dsf_dj-f@@jldfkl").toString());
           return 'Please enter a valid e-mail';
         }
         return null;
@@ -47,11 +55,19 @@ class _AuthPageState extends State<AuthPage> {
         labelText: "Password",
         hintText: "Enter password..",
       ),
-      validator: (String value){
-        if (value.length < 8){
-          return 'Password must be at least 8 characters';
+      validator: (String value) {
+        Pattern pattern =
+            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+        RegExp regex = new RegExp(pattern);
+        print(value);
+        if (value.isEmpty) {
+          return 'Please enter password';
+        } else {
+          if (!regex.hasMatch(value))
+            return 'Please enter a valid password';
+          else
+            return null;
         }
-        return null;
       },
     );
 
