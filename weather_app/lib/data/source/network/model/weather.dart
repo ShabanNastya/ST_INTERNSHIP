@@ -1,22 +1,22 @@
 import 'package:json_annotation/json_annotation.dart';
-//part 'weather.g.dart';
+part 'weather.g.dart';
 
 @JsonSerializable()
-class Weather{
-  @JsonKey(name: 'Cur_ID')
+class Weather {
+  @JsonKey(name: 'id')
   int id;
 
-  @JsonKey(name: 'Cur_City')
-  String city;
+  @JsonKey(name: 'weather')
+  String currently;
 
-  @JsonKey(name: 'Cur_Status')
-  String status;
+  @JsonKey(name: 'temp')
+  String temp;
 
-  @JsonKey(name: 'Cur_Degrees')
-  int degrees;
+  @JsonKey(name: 'humidity')
+  int humidity;
 
-  Weather({this.id, this.city, this.status, this.degrees});
+  Weather({this.id, this.currently, this.temp, this.humidity});
 
-  /*factory Weather.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
-  Map<String, dynamic> toJson() => _$WeatherFromJson(this);*/
+  factory Weather.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
+  Map<String, dynamic> toJson() => _$WeatherToJson(this);
 }

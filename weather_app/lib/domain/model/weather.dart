@@ -6,9 +6,9 @@ class WeatherList {
 
 class WeatherModel {
   int id;
-  String city;
-  String status;
-  int degrees;
+  String currently;
+  String temp;
+  int humidity;
 
-  WeatherModel({this.id, this.city, this.status, this.degrees});
+  WeatherModel({this.id, this.currently, this.temp, this.humidity});
 }
